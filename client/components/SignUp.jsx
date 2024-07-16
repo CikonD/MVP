@@ -10,20 +10,54 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const navigate=useNavigate()
+
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    try {
+      await axios.post("http://localhost:8080/SignUp",{firstName:data.get('firstName'),lastName:data.get('lastName'),email: data.get('email'),password: data.get('password')})
+      navigate('/')
+    } catch (error) {
+      console.log(error);
+    }
+    
+
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
   };
+  // const handleSubmit =  (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   axios.post("http://localhost:8080/SignUp",{firstName:data.get('firstName'),lastName:data.get('lastName'),email: data.get('email'),password: data.get('password')})
+  //     .then((res)=>{
+  //       navigate('/')
+  //     console.log(res);
+  //     })
+  //  .catch((error) =>{ console.log(error)}
+  //    );
+  //   }
+    
+
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
+  
+
+
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -101,7 +135,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2" >
+                <Link href="#" variant="body2"  >
                   Already have an account? Sign in
                 </Link>
               </Grid>

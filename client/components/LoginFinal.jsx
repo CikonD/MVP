@@ -7,12 +7,36 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
+import {jwtDecode} from "jwt-decode"
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import axios from "axios"
+
 
 
 export default function LoginFinal() {
 
-  const navigate = useNavigate()
+const navigate = useNavigate()
+const[email,setEmail]=useState("")
+const[password,setPassword]=useState("")
+
+
+  const handleSubmit = () => {
+    // event.preventDefault();
+     axios.post("http://localhost:8080/signInUser",{email,password})
+      .then((res)=>{sessionStorage.setItem("lolo",jwtDecode(JSON.stringify(res)))
+        console.log(sessionStorage.getItem("lolo"));
+        navigate('Home')
+      })
+      .catch(err=>console.log(err))
+    
+    }
+    
+
+ 
+  // 
+// axios.post("",{First_Name:data.get('firstName'),Last_Name:data.get('lastName'),email: data.get('email'),password: data.get('password')})
+  
 
   return (
     <main>
@@ -46,6 +70,9 @@ export default function LoginFinal() {
             name="email"
             type="email"
             placeholder="your_Email@email.com"
+            onChange={(e)=>{
+              setEmail(e.target.value)
+            }}
           />
         </FormControl>
         <FormControl>
@@ -55,9 +82,12 @@ export default function LoginFinal() {
             name="password"
             type="password"
             placeholder="password"
+            onChange={(e)=>{
+              setPassword(e.target.value)
+            }}
           />
         </FormControl>
-        <Button sx={{ mt: 1 /* margin top */ }} onClick={()=>{navigate('Home')}}>Log in</Button>
+        <Button sx={{ mt: 1 /* margin top */ }} onClick={()=>{handleSubmit()}}>Log in</Button>
         <Typography
           endDecorator={<Link href=""   onClick={()=>{navigate('SignUp')}}>Sign up</Link>}
           fontSize="sm"

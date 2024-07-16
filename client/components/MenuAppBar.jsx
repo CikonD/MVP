@@ -32,6 +32,7 @@ export default function MenuAppBar() {
   };
 
   return (
+    
     <Box sx={{ flexGrow: 1 }}>
       <FormGroup>
         <FormControlLabel
@@ -94,5 +95,6 @@ export default function MenuAppBar() {
         </Toolbar>
       </AppBar>
     </Box>
+    
   );
 }
