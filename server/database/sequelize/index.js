@@ -19,6 +19,9 @@ db.Sequelize = Sequelize;
 db.User = require('./userModel')(sequelize,DataTypes)
 db.Art = require('./artModel')(sequelize,DataTypes)
 db.Rating = require('./ratingModel')(sequelize,DataTypes)
+
+
+
 db.User.hasMany(db.Rating,{foreignKey:"userid"})
 db.Rating.belongsTo(db.User,{foreignKey:"userid"})
 

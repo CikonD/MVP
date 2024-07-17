@@ -9,7 +9,7 @@ const {PostArt,FindArtByUser,GetAllArt} = require("../controller/ArtController")
 
 
 routerArt.post("/PostArt",PostArt)
-routerArt.get("/FindArtByUser",FindArtByUser)
+routerArt.post("/FindArtByUser",FindArtByUser)
 routerArt.get("/GetAllArt",GetAllArt)
 
 

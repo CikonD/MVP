@@ -11,12 +11,16 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { useNavigate } from 'react-router-dom';
+
 
 
 
 export default function MenuAppBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate()
+
 
 
   const handleChange = (event) => {
@@ -32,7 +36,10 @@ export default function MenuAppBar() {
   };
 
   return (
-    
+    <div>
+
+
+      <div>
     <Box sx={{ flexGrow: 1 }}>
       <FormGroup>
         <FormControlLabel
@@ -54,11 +61,12 @@ export default function MenuAppBar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={()=>{navigate("Home")}}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton >
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} >
-            Photos
+            Home
           </Typography>
           {auth && (
             <div>
@@ -87,14 +95,18 @@ export default function MenuAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                
+                <MenuItem onClick={()=>navigate('/myProfile')}>My account</MenuItem>
               </Menu>
             </div>
           )}
         </Toolbar>
       </AppBar>
     </Box>
+    <div>
     
+    </div>
+    </div>
+    </div>
   );
 }

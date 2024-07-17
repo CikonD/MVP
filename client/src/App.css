@@ -1,0 +1,48 @@
+body {
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* Text color */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .main-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://your-anime-art-url.com/path-to-image.jpg'); /* Replace with your anime art URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+  }
+  
+  .grid-container {
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .styled-card {
+    max-width: 345px;
+    margin: auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    transition: 0.3s;
+  }
+  
+  .styled-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  }
+  
+  .styled-card-media {
+    height: 240px;
+    filter: brightness(0.9);
+    transition: 0.3s;
+  }
+  
+  .styled-card-media:hover {
+    filter: brightness(1);
+  }
+  

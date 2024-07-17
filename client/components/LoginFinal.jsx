@@ -7,7 +7,6 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-import {jwtDecode} from "jwt-decode"
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from "axios"
@@ -23,9 +22,13 @@ const[password,setPassword]=useState("")
 
   const handleSubmit = () => {
     // event.preventDefault();
+    
+
      axios.post("http://localhost:8080/signInUser",{email,password})
-      .then((res)=>{sessionStorage.setItem("lolo",jwtDecode(JSON.stringify(res)))
-        console.log(sessionStorage.getItem("lolo"));
+      .then((res)=>{
+        var token = res.data
+        console.log(token);
+        localStorage.setItem("lolo",token)
         navigate('Home')
       })
       .catch(err=>console.log(err))
